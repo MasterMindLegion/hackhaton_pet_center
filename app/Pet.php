@@ -8,8 +8,13 @@ class Pet extends Model
 {
     protected $table = 'pets';
 
+    protected $guarded = [];
+    
     public function owner() {
        
         return $this->belongsTo(Owner::class, 'id', 'owner_id');
     }
+
+
+
 }

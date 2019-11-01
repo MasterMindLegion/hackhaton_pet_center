@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
     <h1>Create a new Person</h1>
 
-    @if (count($errors) > 0)
+    {{-- @if (count($errors) > 0)
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -11,9 +11,9 @@
                 @endforeach
             </ul>
         </div>
-    @endif
+    @endif --}}
 
-    <form method="post" action="{{ action('PetController@store') }}">
+    <form method="post" action="{{ action('Api\PetController@store') }}" >
         @csrf
         <div class="form-group">
             <label for="name">Name</label>
