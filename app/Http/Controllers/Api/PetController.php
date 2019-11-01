@@ -10,26 +10,25 @@ use App\Pet;
 class PetController extends Controller
 {
     public function index() {
-    
+        return view("index", [
+
+            ]);
     }
 
     public function create() {
-        return view("create", [
-
-        ]);
+        $owners = Owner::all();
+        return view("create",compact('owners'));
     }
 
     public function store(Request $request) {
-        
-        $new_owner = Owner::create(
-            [
-                "first_name" => $request->input('name'),
-                "surname" => $request->input('surname'),
-                "email" =>$request->input('email'),
-                "phone" =>$request->input('phone'),
-            ]
-    
-        );
+        $validatedData = $request->validate([
+             'pet' => 'required|max:255',
+             'age' => 'required|max:255',
+             'weight' => 'required|max:255',
+            'breed' => 'max:255',
+            'photo' => 'required|unique:pets|max:255',
+          ]);
+          
 
         $new_pet = Pet::create(
             [
@@ -38,20 +37,13 @@ class PetController extends Controller
                 "photo" =>$request->input('photo'),
                 "weight" =>$request->input('weight'),
                 "age" =>$request->input('age'),
+                "owner_id" =>$request->input('owner_id'),
             ]
     
         );
 
-        dd($new_owner);
+        return "FINE and thanks";
 
-        // $validatedData = $request->validate([
-        //     'name' => 'required|unique:posts|max:255',
-        //     'surname' => 'required|max:255',
-        //     'email' => 'required|unique|max:255',
-        //     'phone' => 'unique|max:255',
-        //     'petName' => 'required|unique|max:255',
-        //     'breed' => 'required|unique|max:255',
-        // ]);
 }
 
 }

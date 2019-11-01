@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/petdata/createPet','Api\PetController@create');
+Route::get('/petdata/createUser', 'Api\OwnerController@create');
+
+Route::post('/petdata/createPet', 'Api\PetController@store');
+
+Route::post('/petdata/createUser', 'Api\OwnerController@store');

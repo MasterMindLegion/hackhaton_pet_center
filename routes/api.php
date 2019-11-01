@@ -16,8 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::get('/petdata', 'Api\PetController@index');
 
-Route::get('/petdata/create', 'Api\PetController@create');
 
-Route::post('/petdata', 'Api\PetController@store');
+//Route::get('/petdata/createUser','Api\UserController@create');
